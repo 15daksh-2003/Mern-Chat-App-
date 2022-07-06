@@ -4,3 +4,9 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+.user-status-icon{
+  position:absolute;
+  top:28px;
+  left:35px;
+  color:grey
+}

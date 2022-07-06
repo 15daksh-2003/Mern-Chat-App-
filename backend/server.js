@@ -11,6 +11,8 @@ dotenv.config();
 connectDB();
 const app = express();
 
+const users=[];
+
 app.use(express.json()); // to accept json data
 
 // app.get("/", (req, res) => {
@@ -43,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = 5000;
 
 const server = app.listen(
   PORT,
@@ -61,6 +63,8 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
   socket.on("setup", (userData) => {
+    users[userData._id]=socket.id;
+    console.log(users);
     socket.join(userData._id);
     socket.emit("connected");
   });

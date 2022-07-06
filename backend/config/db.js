@@ -3,10 +3,9 @@ const colors = require("colors");
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect("mongodb://localhost:27017/mernChatApp", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: true,
     });
 
     console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
