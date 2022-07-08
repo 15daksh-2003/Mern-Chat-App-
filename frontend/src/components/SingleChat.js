@@ -158,9 +158,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   return (
-    <>
+    <Box
+      h="100%"
+      overflowY="hidden">
       {selectedChat ? (
-        <>
+        <Box
+          h="100%">
           <Text
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
@@ -197,14 +200,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Text>
           <Box
             d="flex"
+            h="88%"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
             bg="#E8E8E8"
             w="100%"
-            h="100%"
             borderRadius="lg"
-            overflowY="hidden"
+            overflow="hidden"
+            boxSizing="border-box"
+            position="relative"
           >
             {loading ? (
               <Spinner
@@ -215,7 +220,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 margin="auto"
               />
             ) : (
-              <div className="messages">
+              <div className="messages" style={{height:'85%'}}>
                 <ScrollableChat messages={messages} />
               </div>
             )}
@@ -224,7 +229,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               onKeyDown={sendMessage}
               id="first-name"
               isRequired
-              mt={3}
+              w="95%"
+              my={3}
+              position="absolute"
+              bottom="0"
             >
               {istyping ? (
                 <div>
@@ -242,7 +250,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               />
             </FormControl>
           </Box>
-        </>
+        </Box>
       ) : (
         // to get socket.io on same page
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">
@@ -251,7 +259,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Text>
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 

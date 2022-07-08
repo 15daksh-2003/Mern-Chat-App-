@@ -4,6 +4,7 @@ import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
+import Prrofile from "../components/Prrofile";
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
@@ -12,12 +13,21 @@ const Chatpage = () => {
   return (
     <div style={{ width: "100%" }}>
       {user && <SideDrawer />}
-      <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
+      <div style={{
+        display:'flex',
+        justifyContent: 'space-between',
+        width:'100%',
+        height:'91.5vh',
+        padding:'10px'
+      }} >
         {user && <MyChats fetchAgain={fetchAgain} />}
         {user && (
           <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
         )}
-      </Box>
+        {user && (
+          <Prrofile fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+        )}
+      </div>
     </div>
   );
 };

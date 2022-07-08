@@ -124,14 +124,15 @@ function SideDrawer() {
 
   return (
     <>
-      <Box
-        d="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        bg="white"
-        w="100%"
-        p="5px 10px 5px 10px"
-        borderWidth="5px"
+      <div style={{
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
+        background:"white",
+        width:"100%",
+        padding:"5px 10px 5px 10px",
+        borderWidth:"5px",
+      }}
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
@@ -191,7 +192,7 @@ function SideDrawer() {
             </MenuList>
           </Menu>
         </div>
-      </Box>
+      </div>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />

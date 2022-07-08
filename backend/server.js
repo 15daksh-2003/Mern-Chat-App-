@@ -11,8 +11,6 @@ dotenv.config();
 connectDB();
 const app = express();
 
-const users=[];
-
 app.use(express.json()); // to accept json data
 
 // app.get("/", (req, res) => {
@@ -63,8 +61,6 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
   socket.on("setup", (userData) => {
-    users[userData._id]=socket.id;
-    console.log(users);
     socket.join(userData._id);
     socket.emit("connected");
   });

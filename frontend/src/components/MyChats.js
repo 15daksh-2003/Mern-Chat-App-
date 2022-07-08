@@ -1,4 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
+import { Avatar } from "@chakra-ui/avatar";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
@@ -8,6 +9,7 @@ import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import {AiFillEdit} from "react-icons/ai";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -53,10 +55,24 @@ const MyChats = ({ fetchAgain }) => {
       alignItems="center"
       p={3}
       bg="white"
-      w={{ base: "100%", md: "31%" }}
+      w={{ base: "100%", md: "24%" }}
       borderRadius="lg"
       borderWidth="1px"
     >
+      <div style={{display: "flex", flexDirection: "row",justifyContent:"space-between",fontSize:"24px"}}>
+        <div>My Profile</div>
+        <div style={{marginTop:5}}><AiFillEdit /></div>
+      </div>
+      <div style={{margin:5,textAlign:"center",}}>
+        <Avatar
+          size="xl"
+          cursor="pointer"
+          name={user.name}
+          src={user.pic}
+        />
+        <div>{user.name}</div>
+        <div>online</div>
+      </div>
       <Box
         pb={3}
         px={3}
@@ -81,15 +97,14 @@ const MyChats = ({ fetchAgain }) => {
       <Box
         d="flex"
         flexDir="column"
-        p={3}
         bg="#F8F8F8"
         w="100%"
-        h="100%"
+        h="38vh"
         borderRadius="lg"
         overflowY="hidden"
       >
         {chats ? (
-          <Stack overflowY="scroll">
+          <div style={{overflowY:"scroll",height:'100%'}} >
             {chats.map((chat) => (
               <Box
                 onClick={() => setSelectedChat(chat)}
@@ -99,6 +114,7 @@ const MyChats = ({ fetchAgain }) => {
                 px={3}
                 py={2}
                 borderRadius="lg"
+                margin={3}
                 key={chat._id}
               >
                 <Text>
@@ -116,7 +132,7 @@ const MyChats = ({ fetchAgain }) => {
                 )}
               </Box>
             ))}
-          </Stack>
+          </div>
         ) : (
           <ChatLoading />
         )}
